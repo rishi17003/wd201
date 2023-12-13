@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+*{  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-color: rgba(112, 120, 106, 0.458);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+input#name:invalid:focus{
+    border: 1px solid red;
+}
+input#email:invalid:focus{
+    border: 1px solid red;
+}
+input#password:invalid:focus{
+    border: 1px solid red;
+}
+.form-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 512px;
+    height: 450px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.login-container{
+    position: relative;
+    left: 4px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s ease-in-out;
+}
+header{
+    color: #090909;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px 0 30px 0;
+}
+.input-field{
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #090909;
+    height: 50px;
+    width: 100%;
+    padding: 0 10px 0 45px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    transition: .2s ease;
+}
+.input-field:hover, .input-field:focus{
+    background: rgba(255, 255, 255, 0.25);
+}
+::-webkit-input-placeholder{
+    color: #fff;
+}
+.input-box i{
+    position: relative;
+    top: -35px;
+    left: 17px;
+    color: #090909;
+}
+.submit{
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+.submit:hover{
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+.one{
+    color: #090909;
+}
+
+::placeholder{
+    color: #090909;
+}
+
+.my-table {
+    margin-left: 400px;
+    border-collapse: collapse;
+    margin-top: 530px; 
+}
+
+.my-table th, .my-table td {
+    border: 1px solid #ddd; 
+    padding: 8px; 
+    text-align: left; 
+}
+
+.my-table th {
+    background-color: #f2f2f2;
+}
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <div class="login-container" id="login">
+            <div class="top">
+                <header>Registration Form</header>
+            </div>
+            <form id="user-form">
+                <div class="input-box">
+                    <input type="text" class="input-field" id="name" placeholder="Enter your Full Name" required>
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" class="input-field" id="email" placeholder="Enter your Email Address" required>
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input-field" id="password" placeholder="Password" required>
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input type="date" class="input-field" id="dob" placeholder="Enter your Date of Birth" required>
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="one">
+                    <input type="checkbox" id="accept-check">
+                    <label for="login-check">Accept Terms and Conditions</label>
+                </div>
+                <div class="input-box">
+                    <input type="submit" id="submit" class="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div id="user-entries" class="my-table"></div>
+    </div>   
+
+<script>
+    let Name= document.getElementById("name");
+Name.addEventListener('input',() => validateName(Name));
+let EmailId= document.getElementById("email");
+EmailId.addEventListener('input',() => validateEmail(EmailId));
+let Password= document.getElementById("password");
+Password.addEventListener('input',() => validatePassword(Password));
+let DOB=document.getElementById("dob");
+DOB.addEventListener('input',() => validateDob(DOB));
+
+function validateName(element){
+    if(element.value.length<5){
+        element.setCustomValidity("The Name should be atleast 5 characters long");
+        element.reportValidity();
+    }else{
+        element.setCustomValidity('');
+    }
+}
+
+function validateEmail(element){
+    if(element.validity.typeMismatch){
+        element.setCustomValidity("The Email is not in the right format!!");
+        element.reportValidity();
+    }else{
+        element.setCustomValidity('');
+    }
+}
+
+function validatePassword(element){
+    if(element.value.length<6){
+        element.setCustomValidity("The password should be atleat 6 characters long");
+        element.reportValidity();
+    }else{
+        element.setCustomValidity('');
+    }
+}
+
+function validateDob(element){
+    let today = new Date();
+    let inputDate = new Date(element.value);
+    let age = today.getFullYear() - inputDate.getFullYear();
+    if (age < 18 || age > 55) {
+        element.setCustomValidity("Age must be between 18 and 55.");
+        element.reportValidity();
+    } else {
+        element.setCustomValidity('');
+    }
+}
+
+
+ let userForm=document.getElementById("user-form");
+ const retrieveEntries=() => {
+    let entries =localStorage.getItem("user-entries");
+    if(entries){
+        entries=JSON.parse(entries);
+    }else{
+        entries=[];
+    }
+    return entries;
+ }
+ let userEntries=retrieveEntries();
+ const displayEntries=()=>{
+    const entries=retrieveEntries();
+    const tableEntries=entries.map((entry) => {
+        const nameCell= `<td>${entry.name}</td>`;
+        const emailCell= `<td>${entry.email}</td>`;
+        const passwordCell= `<td>${entry.password}</td>`;
+        const dobCell= `<td>${entry.dob}</td>`;
+        const acceptCell= `<td>${entry.acceptedTermsAndConditions}</td>`;
+
+        const row = `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptCell}</tr>`;
+        return row;
+    }).join("\n");
+
+
+    const table =`<table class = "input-box"><tr> <th class = "input-field" style="width:20%; text-align:center;">Name</th> <th class = "input-field" style="width:20%; text-align:center;">Email</th> <th class = "input-field" style="width:20%; text-align:center;">Password</th><th class = "input-field" style="width:20%; text-align:center;">Dob</th> <th class = "input-field" style="width:20%; text-align:center;">Accepted terms?</th></tr>${tableEntries}</table>` ;
+
+    let details = document.getElementById("user-entries");
+    details.innerHTML=table;
+ }
+
+ const saveUserForm=(event) =>{
+    event.preventDefault();
+    const name=document.getElementById("name").value;
+    const email=document.getElementById("email").value;
+    const password=document.getElementById("password").value;
+    const dob=document.getElementById("dob").value;
+    const acceptedTermsAndConditions=document.getElementById("accept-check").checked;
+    const entry={ 
+        name,
+        email,
+        password,
+        dob,
+        acceptedTermsAndConditions
+    };
+    userEntries.push(entry);
+    localStorage.setItem("user-entries",JSON.stringify(userEntries));
+    displayEntries();
+ }
+ userForm.addEventListener("submit", saveUserForm);
+ displayEntries();
+</script>
+
+</body>
+</html>
