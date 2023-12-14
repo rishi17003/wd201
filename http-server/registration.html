@@ -113,7 +113,7 @@ header{
 .my-table {
     margin-left: 400px;
     border-collapse: collapse;
-    margin-top: 530px; 
+    margin-top: 630px; 
 }
 
 .my-table th, .my-table td {
@@ -160,11 +160,13 @@ header{
             </form>
         </div>
     </div>
-<!--     <div>
+    <!-- <div>
         <div id="user-entries" class="my-table"></div>
     </div>    -->
 
-<!-- <script>
+    <!-- <script src="index_reg.js"></script> -->
+
+<script>
     let Name= document.getElementById("name");
 Name.addEventListener('input',() => validateName(Name));
 let EmailId= document.getElementById("email");
@@ -224,48 +226,48 @@ function validateDob(element){
     }
     return entries;
  }
- let userEntries=retrieveEntries();
- const displayEntries=()=>{
-    const entries=retrieveEntries();
-    const tableEntries=entries.map((entry) => {
-        const nameCell= `<td>${entry.name}</td>`;
-        const emailCell= `<td>${entry.email}</td>`;
-        const passwordCell= `<td>${entry.password}</td>`;
-        const dobCell= `<td>${entry.dob}</td>`;
-        const acceptCell= `<td>${entry.acceptedTermsAndConditions}</td>`;
+//  let userEntries=retrieveEntries();
+//  const displayEntries=()=>{
+//     const entries=retrieveEntries();
+//     const tableEntries=entries.map((entry) => {
+//         const nameCell= `<td>${entry.name}</td>`;
+//         const emailCell= `<td>${entry.email}</td>`;
+//         const passwordCell= `<td>${entry.password}</td>`;
+//         const dobCell= `<td>${entry.dob}</td>`;
+//         const acceptCell= `<td>${entry.acceptedTermsAndConditions}</td>`;
 
-        const row = `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptCell}</tr>`;
-        return row;
-    }).join("\n");
+//         const row = `<tr>${nameCell} ${emailCell} ${passwordCell} ${dobCell} ${acceptCell}</tr>`;
+//         return row;
+//     }).join("\n");
 
 
-    const table =`<table class = "input-box"><tr> <th class = "input-field" style="width:20%; text-align:center;">Name</th> <th class = "input-field" style="width:20%; text-align:center;">Email</th> <th class = "input-field" style="width:20%; text-align:center;">Password</th><th class = "input-field" style="width:20%; text-align:center;">Dob</th> <th class = "input-field" style="width:20%; text-align:center;">Accepted terms?</th></tr>${tableEntries}</table>` ;
+//     const table =`<table class = "input-box"><tr> <th class = "input-field" style="width:20%; text-align:center;">Name</th> <th class = "input-field" style="width:20%; text-align:center;">Email</th> <th class = "input-field" style="width:20%; text-align:center;">Password</th><th class = "input-field" style="width:20%; text-align:center;">Dob</th> <th class = "input-field" style="width:20%; text-align:center;">Accepted terms?</th></tr>${tableEntries}</table>` ;
 
-    let details = document.getElementById("user-entries");
-    details.innerHTML=table;
- }
+//     let details = document.getElementById("user-entries");
+//     details.innerHTML=table;
+//  }
 
- const saveUserForm=(event) =>{
-    event.preventDefault();
-    const name=document.getElementById("name").value;
-    const email=document.getElementById("email").value;
-    const password=document.getElementById("password").value;
-    const dob=document.getElementById("dob").value;
-    const acceptedTermsAndConditions=document.getElementById("accept-check").checked;
-    const entry={ 
-        name,
-        email,
-        password,
-        dob,
-        acceptedTermsAndConditions
-    };
-    userEntries.push(entry);
-    localStorage.setItem("user-entries",JSON.stringify(userEntries));
-    displayEntries();
- }
- userForm.addEventListener("submit", saveUserForm);
- displayEntries();
+//  const saveUserForm=(event) =>{
+//     event.preventDefault();
+//     const name=document.getElementById("name").value;
+//     const email=document.getElementById("email").value;
+//     const password=document.getElementById("password").value;
+//     const dob=document.getElementById("dob").value;
+//     const acceptedTermsAndConditions=document.getElementById("accept-check").checked;
+//     const entry={ 
+//         name,
+//         email,
+//         password,
+//         dob,
+//         acceptedTermsAndConditions
+//     };
+//     userEntries.push(entry);
+//     localStorage.setItem("user-entries",JSON.stringify(userEntries));
+//     displayEntries();
+//  }
+//  userForm.addEventListener("submit", saveUserForm);
+//  displayEntries();
 </script>
- -->
+
 </body>
 </html>
