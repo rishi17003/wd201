@@ -35,7 +35,7 @@ const todoList = () => {
       displayableList += `${checkbox} ${item.title}${date}\n`;
     });
 
-    return displayableList;
+    return displayableList.trim();
     }
   
     return {
