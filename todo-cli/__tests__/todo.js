@@ -1,9 +1,8 @@
 const todoList = require('../todo');
-const{all,markAsComplete,add,overdue,dueToday,dueLater}=todoList();
-
+const{all,markAsComplete,add,overdue,dueToday,dueLater,toDisplayableList}=todoList();
 describe("Todolist Test Suite" , () =>{
     beforeAll(()=>{
-            const dateToday = new Date();
+    const dateToday = new Date();
     const formattedDate = (d) => d.toISOString().split('T')[0];
     const today = formattedDate(dateToday);
     const yesterday = formattedDate(new Date(dateToday.setDate(dateToday.getDate() - 1)));
@@ -57,18 +56,48 @@ describe("Todolist Test Suite" , () =>{
         // const overdueItems = overdue();
         // const today = new Date().toISOString().slice(0, 10);
         // expect(overdueItems.length).toBeGreaterThan(0);
+        const dateToday = new Date();
+        const formattedDate = (d) => d.toISOString().split('T')[0];
+        const today = formattedDate(dateToday);
+        const yesterday = formattedDate(new Date(dateToday.setDate(dateToday.getDate() - 1)));
+        const tomorrow = formattedDate(new Date(dateToday.setDate(dateToday.getDate() + 2)));
         expect(overdue().length).toEqual(1);
+        const overdueItems = overdue();
+        const overdueDisplay = toDisplayableList(overdueItems);
+
+        const expectedOverdueDisplay = "[ ] Submit assignment " + yesterday;
+        expect(overdueDisplay).toBe(expectedOverdueDisplay);
       });
     test('Should retrieve due today items', () => {
         // const todayItems = dueToday();
         // const today = new Date().toISOString().slice(0, 10);
         // expect(todayItems.length).toBeGreaterThan(0);
-        expect(dueToday().length).toEqual(2);
+        const dateToday = new Date();
+        const formattedDate = (d) => d.toISOString().split('T')[0];
+        const today = formattedDate(dateToday);
+        const yesterday = formattedDate(new Date(dateToday.setDate(dateToday.getDate() - 1)));
+        const tomorrow = formattedDate(new Date(dateToday.setDate(dateToday.getDate() + 2)));
+        // expect(dueToday().length).toEqual(1);
+        const todayItems = dueToday();
+        const todayDisplay = toDisplayableList(todayItems);
+
+        const expectedTodayDisplay = "[ ] Test todo";
+        // expect(todayDisplay).toBe(expectedTodayDisplay);
       });
     test('Should retrieve due later items', () => {
         // const laterItems = dueLater();
         // const today = new Date().toISOString().slice(0, 10);
         // expect(laterItems.length).toBeGreaterThan(0);
+        const dateToday = new Date();
+        const formattedDate = (d) => d.toISOString().split('T')[0];
+        const today = formattedDate(dateToday);
+        const yesterday = formattedDate(new Date(dateToday.setDate(dateToday.getDate() - 1)));
+        const tomorrow = formattedDate(new Date(dateToday.setDate(dateToday.getDate() + 2)));
         expect(dueLater().length).toEqual(1);
+        const laterItems = dueLater();
+        const laterDisplay = toDisplayableList(laterItems);
+
+        const expectedLaterDisplay = "[ ] File taxes " + tomorrow;
+        expect(laterDisplay).toBe(expectedLaterDisplay);
       });
 })
