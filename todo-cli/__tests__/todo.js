@@ -1,24 +1,14 @@
 const todoList = require('../todo');
+ let todos;
+todos = todoList();
 
 describe('TodoList Test Suite', () => {
-  let todos;
-
-  beforeAll(() => {
-    todos = todoList();
-
-    const dateToday = new Date();
-    const formattedDate = (d) => d.toISOString().split('T')[0];
-    const today = formattedDate(dateToday);
-    const yesterday = formattedDate(new Date(dateToday.setDate(dateToday.getDate() - 1)));
-    const tomorrow = formattedDate(new Date(dateToday.setDate(dateToday.getDate() + 2)));
-  });
-
   test('Should add new todo', () => {
     const todoItemsCount = todos.all.length;
     todos.add({
       title: 'Test todo 2',
       completed: false,
-      dueDate: '2023-12-19',
+      dueDate: '2023-12-20',
     });
     expect(todos.all.length).toBe(todoItemsCount + 1);
   });
